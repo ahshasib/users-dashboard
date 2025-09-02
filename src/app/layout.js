@@ -13,7 +13,7 @@ return (
 <html lang="en" data-theme="light">
 <body className="min-h-screen flex flex-col">
 <Navbar></Navbar>
-<main className="container mx-auto px-4 py-6 flex-1">
+<main className="w-full mx-auto flex-1">
 {children}
 </main>
 <footer className="border-t">

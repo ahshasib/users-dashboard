@@ -5,7 +5,7 @@ export default function UserTable({ users, onRowClick }) {
     <div className="overflow-x-auto shadow-lg">
       <table className="min-w-full text-left">
         <thead>
-          <tr className="bg-gradient-to-r from-purple-500 via-pink-500 to-red-500 text-white">
+          <tr className="bg-gradient-to-r from-purple-500 via-pink-400 to-indigo-500 text-white">
             <th className="px-6 py-3 text-sm font-semibold uppercase tracking-wider">#</th>
             <th className="px-6 py-3 text-sm font-semibold uppercase tracking-wider">Name</th>
             <th className="px-6 py-3 text-sm font-semibold uppercase tracking-wider">Email</th>
@@ -17,7 +17,7 @@ export default function UserTable({ users, onRowClick }) {
           {users.map((u) => (
             <tr
               key={u.id}
-              className="cursor-pointer transition transform hover:scale-101 hover:bg-gradient-to-r hover:from-pink-100 hover:via-purple-100 hover:to-blue-100"
+              className="cursor-pointer transition transform hover:scale-101 hover:bg-gradient-to-r hover:from-violet-400 hover:via-purple-200 hover:to-indigo-300 hover:text-black"
               onClick={() => onRowClick(u.id)}
             >
               <td className="px-6 py-4">{u.id}</td>
@@ -30,12 +30,12 @@ export default function UserTable({ users, onRowClick }) {
                   {u.name}
                 </Link>
               </td>
-              <td className="px-6 py-4">
-                <a href={`mailto:${u.email}`} className="text-gray-700 hover:underline">
+              <td className="px-6 py-4 text-gray-200 hover:text-gray-700 font-bold">
+                <a href={`mailto:${u.email}`} className=" hover:underline ">
                   {u.email}
                 </a>
               </td>
-              <td className="px-6 py-4">{u.phone}</td>
+              <td className="px-6 py-4 font-bold">{u.phone}</td>
               <td className="px-6 py-4">
                 <a
                   href={`https://${u.website}`}
