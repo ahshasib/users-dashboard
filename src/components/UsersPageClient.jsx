@@ -89,7 +89,7 @@ onChange={(e) => { setPage(1); setPerPage(Number(e.target.value)) }}
 </div>
 </div>
 <UserTable users={paginated} onRowClick={handleRowClick} />
-    <Pagination page={currentPage} totalPages={totalPages} onPageChange={setPage} />
+    <Pagination page={currentPage} totalPages={totalPages} onPageChange={(p) => setPage(p)} />
   </div>
 )
 }
