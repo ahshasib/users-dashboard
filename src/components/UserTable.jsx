@@ -17,7 +17,7 @@ export default function UserTable({ users, onRowClick }) {
           {users.map((u) => (
             <tr
               key={u.id}
-              className="cursor-pointer transition transform hover:scale-101 hover:bg-gradient-to-r hover:from-violet-400 hover:via-purple-200 hover:to-indigo-300 hover:text-black"
+              className="cursor-pointer transition transform hover:scale-101 hover:bg-gradient-to-r hover:from-violet-400 hover:via-purple-200 hover:to-indigo-300 hover:text-black border-b border-gray-800"
               onClick={() => onRowClick(u.id)}
             >
               <td className="px-6 py-4">{u.id}</td>
