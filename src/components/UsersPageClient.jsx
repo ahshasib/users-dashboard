@@ -7,12 +7,15 @@ import SearchBar from './SearchBar'
 import Pagination from './Pagination'
 import UserTable from './UserTable'
 import { FaUser } from 'react-icons/fa'
+import Loading from './Loading'
 
-export default function UsersPageClient({ users }) {
+export default function UsersPageClient({ users: initialUsers }) {
   const router = useRouter()
   const pathname = usePathname()
   const searchParams = useSearchParams()
 
+  const [users, setUsers] = useState(initialUsers || [])
+  const [loading, setLoading] = useState(!initialUsers) // loading true if no initial data
   const [query, setQuery] = useState('')
   const [page, setPage] = useState(1)
   const [perPage, setPerPage] = useState(5)
@@ -35,6 +38,7 @@ export default function UsersPageClient({ users }) {
     router.replace(qs ? `${pathname}?${qs}` : pathname)
   }, [query, page, perPage, pathname, router])
 
+  // Filtered users
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase()
     if (!q) return users
@@ -52,38 +56,29 @@ export default function UsersPageClient({ users }) {
 
   const handleRowClick = (id) => router.push(`/users/${id}`)
 
-  // Radio wave animation props
-  const waves = [0, 1, 2] // multiple waves
+  // Simulate data loading if initialUsers is not provided
+  useEffect(() => {
+    if (!initialUsers) {
+      setLoading(true)
+      // simulate fetch delay
+      const timer = setTimeout(() => {
+        setUsers(users) // here you would fetch from API
+        setLoading(false)
+      }, 1000)
+      return () => clearTimeout(timer)
+    }
+  }, [initialUsers])
+
+  if (loading) {
+    return (
+      <div >
+       <Loading></Loading>
+      </div>
+    )
+  }
 
   return (
     <div className="relative min-h-screen w-full p-10 overflow-hidden bg-gray-900 text-white">
-
-      {/* Radio wave animation */}
-      {/* Subtle radio wave animation */}
-      {waves.map((i) => (
-        <motion.div
-          key={i}
-          className="absolute bottom-0 left-1/2 rounded-full border"
-          style={{
-            width: 200 + i * 150,
-            height: 200 + i * 150,
-            marginLeft: -(100 + i * 75),
-            borderColor: 'rgba(59, 130, 246, 0.1)', // subtle light blue
-            borderWidth: '30px', // thin border
-          }}
-          animate={{
-            scale: [0, 3],
-            opacity: [0.1, 0], // very subtle
-          }}
-          transition={{
-            duration: 4 + i, // slower for smooth effect
-            repeat: Infinity,
-            ease: 'easeOut',
-            delay: i * 0.5,
-          }}
-        />
-      ))}
-
 
       {/* Page content */}
       <motion.div
@@ -142,11 +137,7 @@ export default function UsersPageClient({ users }) {
               </select>
             </div>
           </div>
-
-
         </div>
-
-
 
         <UserTable users={paginated} onRowClick={handleRowClick} />
         <Pagination page={currentPage} totalPages={totalPages} onPageChange={(p) => setPage(p)} />
