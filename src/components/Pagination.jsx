@@ -13,7 +13,7 @@ export default function Pagination({ page, totalPages, onPageChange }) {
     <div className="flex items-center justify-center gap-2 mt-6">
       {/* Previous Button */}
       <button
-        className={`flex items-center gap-2 px-6 py-2 text-sm font-medium transition-all ${
+        className={`flex cursor-pointer  items-center gap-2 px-6 py-2 text-sm font-medium transition-all ${
           canPrev
             ? "bg-gradient-to-r from-pink-500 to-indigo-500 text-white hover:opacity-90"
             : "bg-gray-300 text-gray-500 cursor-not-allowed"
@@ -30,7 +30,7 @@ export default function Pagination({ page, totalPages, onPageChange }) {
         <button
           key={p}
           onClick={() => onPageChange(p)}
-          className={`px-4 py-2 text-sm font-semibold transition-all ${
+          className={`px-4 py-2 cursor-pointer  text-sm font-semibold transition-all ${
             p === page
               ? "bg-gradient-to-r from-pink-500 to-indigo-500 text-white"
               : "bg-gray-200 text-gray-700 hover:bg-gradient-to-r hover:from-purple-500 hover:via-pink-400 hover:to-indigo-500 hover:text-white"
@@ -42,7 +42,7 @@ export default function Pagination({ page, totalPages, onPageChange }) {
 
       {/* Next Button */}
       <button
-        className={`flex items-center gap-2 px-6 py-2 text-sm font-medium transition-all ${
+        className={`flex cursor-pointer items-center gap-2 px-6 py-2 text-sm font-medium transition-all ${
           canNext
             ? "bg-gradient-to-r from-pink-500 to-indigo-500 text-white hover:opacity-90"
             : "bg-gray-300 text-gray-500 cursor-not-allowed"
