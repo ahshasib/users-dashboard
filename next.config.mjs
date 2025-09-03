@@ -1,4 +1,8 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {};
-
-export default nextConfig;
+const nextConfig = {
+    output: 'export', // এটি বলে যে site static export হবে
+    distDir: 'out',   // export হওয়া folder
+  }
+  
+  module.exports = nextConfig
+  
